@@ -32,6 +32,7 @@ export async function POST(request: NextRequest) {
     const registrationNumber = formData.get("registrationNumber") as string;
     const termsAccepted = formData.get("termsAccepted") === "true";
     const file = formData.get("file") as File | null;
+    const is_payment_verified = false;
 
     if (
       !firstName ||
@@ -74,6 +75,7 @@ export async function POST(request: NextRequest) {
       registrationNumber,
       termsAccepted,
       fileUrl,
+      is_payment_verified,
       createdAt: new Date(),
     });
 
@@ -88,10 +90,20 @@ export async function POST(request: NextRequest) {
         registrationNumber,
         termsAccepted,
         fileUrl,
+        is_payment_verified,
       },
     });
   } catch (error) {
     console.error("Registration error:", error);
     return NextResponse.json({ error: "Registration failed" }, { status: 500 });
   }
+}
+
+export async function GET() {
+  const client = await connectToDatabase();
+  const db = client.db("tedx-muj");
+  const collection = db.collection("registrations");
+  const result = await collection.countDocuments({});
+
+  return NextResponse.json({ count: result });
 }
