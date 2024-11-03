@@ -9,11 +9,10 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-brand text-white",
+        default: "bg-brand text-white shadow-[3px_3px_0px_rgba(235,0,40,0.5)]",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-brand bg-black text-brand",
+        outline: "border border-brand bg-black text-brand",
         secondary:
           "bg-secondary text-secondary-foreground hover:bg-secondary/80",
         ghost: "hover:bg-accent hover:text-accent-foreground",
@@ -31,7 +30,7 @@ const buttonVariants = cva(
       size: "sm",
     },
   }
-)
+);
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
