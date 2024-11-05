@@ -16,7 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { Upload, FileText, Image as ImageIcon, X, UploadCloud } from "lucide-react";
+import { FileText, Image as ImageIcon, UploadCloud } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 
