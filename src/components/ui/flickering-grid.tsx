@@ -45,7 +45,7 @@ const FlickeringGrid: React.FC<FlickeringGridProps> = ({
       ctx.fillRect(0, 0, 1, 1);
       const imageData = ctx.getImageData(0, 0, 1, 1).data;
       const r = imageData[0];
-      const g = imageData[1]; 
+      const g = imageData[1];
       const b = imageData[2];
       return `rgba(${r}, ${g}, ${b},`;
     };
@@ -173,11 +173,7 @@ const FlickeringGrid: React.FC<FlickeringGridProps> = ({
   return (
     <canvas
       ref={canvasRef}
-      className={`pointer-events-none ${className}`}
-      style={{
-        width: "100svw",
-        height: "100svh",
-      }}
+      className={`pointer-events-none w-[100vw] h-[100svh] ${className}`}
     />
   );
 };
