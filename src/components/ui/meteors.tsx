@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 interface MeteorsProps {
   number?: number;
 }
-export const Meteors = ({ number = 20 }: MeteorsProps) => {
+export const Meteors = ({ number = 25 }: MeteorsProps) => {
   const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>(
     [],
   );

@@ -1,13 +1,14 @@
 import Link from "next/link";
 import BoxReveal from "./ui/box-reveal";
 import GradualSpacing from "./ui/gradual-spacing";
-import { BackgroundBeamsWithCollision } from "./ui/background-beams-with-collision";
+import Meteors from "./ui/meteors";
 
 export default function Footer() {
   return (
     <div className="bg-black">
-      <BackgroundBeamsWithCollision className="w-full bg-brand/5 border-t-2 border-brand py-12">
-        <footer className="">
+      <div className="bg-brand/5 border-t-2 z-10 border-brand py-12 relative flex items-center w-full justify-center overflow-hidden">
+        <Meteors/>
+        <footer className="z-10">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {/* Logo & Description */}
@@ -154,7 +155,7 @@ export default function Footer() {
             </div>
           </div>
         </footer>
-      </BackgroundBeamsWithCollision>
+      </div>
     </div>
   );
 }
