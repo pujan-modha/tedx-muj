@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <div className="bg-black">
       <div className="bg-brand/5 border-t-2 z-10 border-brand py-12 relative flex items-center w-full justify-center overflow-hidden">
-        <Meteors/>
+        <Meteors />
         <footer className="z-10">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -21,18 +21,18 @@ export default function Footer() {
                   </BoxReveal>
                   <div className="flex">
                     <GradualSpacing
-                      className="font-display text-center font-thin -tracking-widest  text-white text-4xl"
+                      className="font-display text-center font-thin tracking-normal text-white text-4xl"
                       text="Manipal "
                       duration={0.5}
                     />
                     <GradualSpacing
-                      className="font-display text-center font-thin -tracking-widest  text-white text-4xl"
+                      className="font-display text-center font-thin tracking-normal text-white text-4xl"
                       text="University"
                       duration={0.5}
                     />
                   </div>
                   <GradualSpacing
-                    className="font-display text-center font-thin -tracking-widest  text-white text-4xl"
+                    className="font-display text-center font-thin tracking-normal text-white text-4xl"
                     text="Jaipur"
                     duration={0.5}
                   />

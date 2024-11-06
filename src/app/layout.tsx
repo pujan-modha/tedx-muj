@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
@@ -23,6 +23,7 @@ export default function RootLayout({
         <div className="fixed w-full top-0 z-50">
           <Navbar />
         </div>
+        <Toaster />
         {children}
         <div className="w-full z-50">
           <Footer />

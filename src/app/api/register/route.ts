@@ -25,21 +25,21 @@ export async function POST(request: NextRequest) {
   try {
     const formData = await request.formData();
 
-    const firstName = formData.get("firstName") as string;
-    const lastName = formData.get("lastName") as string;
+    const fullName = formData.get("fullName") as string;
     const mobileNumber = formData.get("mobileNumber") as string;
     const email = formData.get("email") as string;
     const registrationNumber = formData.get("registrationNumber") as string;
+    const transactionID = formData.get("transactionID") as string;
     const termsAccepted = formData.get("termsAccepted") === "true";
     const file = formData.get("file") as File | null;
     const is_payment_verified = false;
-
+    console.log(transactionID);
     if (
-      !firstName ||
-      !lastName ||
+      !fullName ||
       !mobileNumber ||
       !email ||
       !registrationNumber ||
+      !transactionID ||
       !termsAccepted
     ) {
       return NextResponse.json({ error: "Invalid input" }, { status: 400 });
@@ -62,19 +62,19 @@ export async function POST(request: NextRequest) {
 
       fileUrl = result.secure_url;
     }
-
+    console.log(fileUrl);
     const client = await connectToDatabase();
     const db = client.db("tedx-muj");
 
     const collection = db.collection("registrations");
     const result = await collection.insertOne({
-      firstName,
-      lastName,
+      fullName,
       mobileNumber,
       email,
       registrationNumber,
       termsAccepted,
       fileUrl,
+      transactionID,
       is_payment_verified,
       createdAt: new Date(),
     });
@@ -83,13 +83,13 @@ export async function POST(request: NextRequest) {
       success: true,
       data: {
         _id: result.insertedId,
-        firstName,
-        lastName,
+        fullName,
         mobileNumber,
         email,
         registrationNumber,
         termsAccepted,
         fileUrl,
+        transactionID,
         is_payment_verified,
       },
     });

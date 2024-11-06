@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,17 +16,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
+import { useToast } from "@/hooks/use-toast";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { FileText, Image as ImageIcon, UploadCloud } from "lucide-react";
-import { cn } from "@/lib/utils";
-
+import {
+  Image as ImageIcon,
+  Trash2,
+  UploadCloud,
+  LoaderCircle,
+} from "lucide-react";
 
 const formSchema = z.object({
-  firstName: z.string().min(2, {
-    message: "First name must be at least 2 characters.",
-  }),
-  lastName: z.string().min(2, {
-    message: "Last name must be at least 2 characters.",
+  fullName: z.string().min(2, {
+    message: "Name must be at least 2 characters.",
   }),
   mobileNumber: z.string().regex(/^\+?[1-9]\d{1,14}$/, {
     message: "Please enter a valid mobile number.",
@@ -36,32 +38,43 @@ const formSchema = z.object({
   registrationNumber: z.string().min(1, {
     message: "Registration number is required.",
   }),
-  file: z.custom<File>()
-    .refine((file) => !file || file.size <= 5000000, 'File size should be less than 5MB')
+  file: z
+    .custom<File>((file) => file instanceof File, {
+      message: "Payment proof is required.",
+    })
+    .refine((file) => file.size <= 5000000, "File size should be less than 5MB")
     .refine(
-      (file) => !file || ['application/pdf', 'image/jpeg', 'image/png'].includes(file.type),
-      'Only PDF, JPEG, and PNG files are allowed'
-    )
-    .optional(),
+      (file) =>
+        ["application/pdf", "image/jpeg", "image/png"].includes(file.type),
+      "Only PDF, JPEG, and PNG files are allowed"
+    ),
+  transactionID: z.string().min(1, {
+    message: "Transaction ID is required.",
+  }),
   termsAccepted: z.boolean().refine((val) => val === true, {
     message: "You must accept the terms and conditions.",
   }),
 });
 
 export default function TedXForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [regCount, setRegCount] = useState(0);
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      firstName: "",
-      lastName: "",
+      fullName: "",
       mobileNumber: "",
       email: "",
       registrationNumber: "",
+      transactionID: "",
       termsAccepted: false,
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    setIsLoading(true);
     const formData = new FormData();
 
     Object.entries(values).forEach(([key, value]) => {
@@ -86,15 +99,45 @@ export default function TedXForm() {
 
       const result = await response.json();
       console.log("Registration successful:", result);
+      toast({
+        title: "Successfully registered for TedX Event",
+        description: "We have sent a confirmation email",
+      });
+      form.reset();
     } catch (error) {
       console.error("Registration error:", error);
+      toast({
+        title: "Registration failed",
+        description: "Please try again later",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
     }
   }
+
+  useEffect(() => {
+    async function fetchRegCount() {
+      try {
+        const res = await fetch("/api/register", { method: "GET" });
+        const data = await res.json();
+        setRegCount(data.count);
+      } catch (error) {
+        toast({
+          title: "Error fetching registration count",
+          description: "Please try again later",
+          variant: "destructive",
+        });
+        console.error("Error fetching registrations:", error);
+      }
+    }
+    fetchRegCount();
+  }, [toast]);
 
   return (
     <div className="flex min-h-[100svh] my-12 items-center justify-end max-w-7xl mx-auto pt-20">
       <div className="grid grid-cols-2">
-        <div>hello</div>
+        <div>Placeholder Text</div>
         <div className="bg-black">
           <BackgroundBeamsWithCollision className="max-w-md m-auto p-6 border-2 border-brand bg-brand/5 ">
             <Form {...form}>
@@ -102,34 +145,19 @@ export default function TedXForm() {
                 onSubmit={form.handleSubmit(onSubmit)}
                 className="space-y-4 z-10"
               >
-                <div className="flex gap-4">
-                  <FormField
-                    control={form.control}
-                    name="firstName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>First name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="John" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="lastName"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Last name</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Doe" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </div>
+                <FormField
+                  control={form.control}
+                  name="fullName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Full name</FormLabel>
+                      <FormControl>
+                        <Input placeholder="John Doe" {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
                 <FormField
                   control={form.control}
                   name="mobileNumber"
@@ -175,57 +203,46 @@ export default function TedXForm() {
                 <FormField
                   control={form.control}
                   name="file"
-                  render={({ field }) => (
+                  render={({ field: { onChange, value, ...field } }) => (
                     <FormItem>
                       <FormLabel className="text-white">
                         Upload Payment Proof
                       </FormLabel>
                       <FormControl>
-                        <div className="flex items-center justify-center w-full">
-                          <label 
-                            htmlFor="file-upload" 
-                            className={cn(
-                              "flex flex-col items-center justify-center w-full h-32 rounded-lg cursor-pointer",
-                              "border-2 border-dashed transition-all duration-150 ease-in-out",
-                              field.value
-                                ? "border-brand bg-brand/5 hover:bg-brand/10"
-                                : "border-brand/50 hover:border-brand bg-brand/5 hover:bg-brand/10"
-                            )}
+                        <div className="w-full">
+                          <label
+                            htmlFor="file-upload"
+                            className="flex items-center justify-between w-full p-4 rounded-lg cursor-pointer border-2 border-dashed border-red-500/50 hover:border-red-500 bg-red-500/5 hover:bg-red-500/10 transition-all duration-150 ease-in-out"
                           >
-                            {field.value ? (
-                              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                {field.value.type.includes("image") ? (
-                                  <ImageIcon className="w-8 h-8 mb-4 text-brand" />
-                                ) : (
-                                  <FileText className="w-8 h-8 mb-4 text-brand" />
-                                )}
-                                <p className="mb-2 text-sm text-brand font-medium">
-                                  {field.value.name}
-                                </p>
-                                <p className="text-xs text-white">
-                                  {(field.value.size / 1024 / 1024).toFixed(2)}MB
-                                </p>
-                                <Button
+                            {value ? (
+                              <>
+                                <div className="flex items-center space-x-4">
+                                  <ImageIcon className="w-6 h-6 text-red-500" />
+                                  <div>
+                                    <p className="text-sm text-red-500 font-medium truncate-filename">
+                                      {value.name}
+                                    </p>
+                                  </div>
+                                </div>
+                                <button
                                   type="button"
-                                  variant="ghost"
-                                  size="sm"
                                   onClick={(e) => {
                                     e.preventDefault();
-                                    field.onChange(null);
+                                    onChange(undefined);
                                   }}
-                                  className="mt-2 text-xs text-brand hover:text-brand/80"
+                                  className="text-red-500 hover:text-red-400 p-1 rounded"
                                 >
-                                  Remove file
-                                </Button>
-                              </div>
+                                  <Trash2 className="w-5 h-5" />
+                                </button>
+                              </>
                             ) : (
-                              <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                <UploadCloud className="w-8 h-8 mb-4 text-brand"/>
-                                <p className="mb-2 text-sm text-white">
-                                  <span className="font-semibold text-brand hover:text-brand/80">Click to upload</span> or drag and drop
-                                </p>
-                                <p className="text-xs text-white">
-                                  PDF, JPEG, or PNG (max. 5MB)
+                              <div className="flex flex-col items-center justify-center w-full py-4">
+                                <UploadCloud className="w-12 h-12 mb-2 text-red-500" />
+                                <p className="text-sm text-gray-400">
+                                  Drag and drop your file here or{" "}
+                                  <span className="font-semibold text-red-500 hover:text-red-400">
+                                    click to browse
+                                  </span>
                                 </p>
                               </div>
                             )}
@@ -235,14 +252,28 @@ export default function TedXForm() {
                               accept=".pdf,.jpg,.jpeg,.png"
                               onChange={(e) => {
                                 const file = e.target.files?.[0];
-                                field.onChange(file);
+                                onChange(file);
                               }}
                               className="hidden"
+                              {...field}
                             />
                           </label>
                         </div>
                       </FormControl>
-                      <FormMessage className="text-brand" />
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="transactionID"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Transaction ID</FormLabel>
+                      <FormControl>
+                        <Input placeholder="123456789" {...field} />
+                      </FormControl>
+                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -250,25 +281,34 @@ export default function TedXForm() {
                   control={form.control}
                   name="termsAccepted"
                   render={({ field }) => (
-                    <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                      <FormControl>
-                        <Checkbox
-                          checked={field.value}
-                          onCheckedChange={field.onChange}
-                        />
-                      </FormControl>
-                      <div className="space-y-1 leading-none">
-                        <FormLabel>Accept terms and conditions</FormLabel>
-                        <FormDescription>
-                          You agree to follow all event rules and guidelines.
-                        </FormDescription>
-                      </div>
+                    <div>
+                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                        <FormControl>
+                          <Checkbox
+                            checked={field.value}
+                            onCheckedChange={field.onChange}
+                          />
+                        </FormControl>
+                        <div className="space-y-1 leading-none">
+                          <FormLabel>Accept terms and conditions</FormLabel>
+                          <FormDescription>
+                            You agree to follow all event rules and guidelines.
+                          </FormDescription>
+                        </div>
+                      </FormItem>
                       <FormMessage />
-                    </FormItem>
+                    </div>
                   )}
                 />
-                <Button type="submit" className="w-full">
-                  Submit
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? (
+                    <div className="flex items-center space-x-2">
+                      <LoaderCircle className="animate-spin" />
+                      <p>Submitting...</p>
+                    </div>
+                  ) : (
+                    <p>Submit</p>
+                  )}
                 </Button>
               </form>
             </Form>
