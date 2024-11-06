@@ -134,6 +134,10 @@ export default function TedXForm() {
     fetchRegCount();
   }, [toast]);
 
+  useEffect(() => {
+    console.log(regCount)
+  }, [regCount]);
+
   return (
     <div className="flex min-h-[100svh] my-12 items-center justify-end max-w-7xl mx-auto pt-20">
       <div className="grid grid-cols-2">
