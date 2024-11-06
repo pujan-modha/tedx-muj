@@ -5,15 +5,15 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    <div className="bg-black">
-      <div className="text-white bg-brand/5 border-b-2 border-brand h-20 flex items-center">
+    <div className="bg-black bg-opacity-50">
+      <div className="text-white   h-20 flex items-center">
         <div className="flex w-full items-center max-w-7xl mx-auto">
           <Link href="/" className="mr-auto">
             <Image src={logo} alt="logo" width={200} height={100} />
           </Link>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-4">
-              <Link href="/register">About</Link>{" "}
+              <Link href="/about">About</Link>{" "}
               <Link href="/register">Team</Link>
             </div>
             <Link href="/register">
