@@ -281,9 +281,11 @@ export default function TedXForm() {
                         </FormItem>
                       )}
                     />
-                    <Link href="https://rzp.io/rzp/ntW8VTH9" target="_blank">
-                      <Button className="w-full">Click Here to Pay</Button>
-                    </Link>
+                    <div className="mt-4">
+                      <Link href="https://rzp.io/rzp/ntW8VTH9" target="_blank">
+                        <Button className="w-full">Click Here to Pay</Button>
+                      </Link>
+                    </div>
                     <FormField
                       control={form.control}
                       name="file"
