@@ -8,7 +8,7 @@ export default function Hero() {
       <BackgroundLines className="">
         <BoxReveal boxColor={"#eb0028"} duration={0.5}>
           <div className="md:text-7xl text-3xl font-black text-brand">
-            TED<span className="align-super md:text-5xl text-2xl">x</span>
+            TED<span className="align-super md:text-5xl text-xl">x</span>
           </div>
         </BoxReveal>
         <div className="flex">
