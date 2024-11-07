@@ -283,7 +283,18 @@ export default function TedXForm() {
                     />
                     <div className="mt-4">
                       <Link href="https://rzp.io/rzp/ntW8VTH9" target="_blank">
-                        <Button className="w-full">Click Here to Pay</Button>
+                        <Button
+                          className="w-full"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            window.open(
+                              "https://rzp.io/rzp/ntW8VTH9",
+                              "_blank"
+                            );
+                          }}
+                        >
+                          Click Here to Pay
+                        </Button>
                       </Link>
                     </div>
                     <FormField
