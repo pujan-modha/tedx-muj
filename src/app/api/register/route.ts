@@ -54,8 +54,8 @@ export async function POST(request: NextRequest) {
           {
             folder: "registrations",
             timeout: 60000, // 60 seconds timeout
-            resource_type: 'auto', // Automatically detect file type
-            chunk_size: 6000000 // 6MB chunks
+            resource_type: "auto", // Automatically detect file type
+            chunk_size: 6000000, // 6MB chunks
           },
           (error, result) => {
             if (error) reject(error);
@@ -65,7 +65,7 @@ export async function POST(request: NextRequest) {
         );
 
         // Add error handler for the stream
-        uploadStream.on('error', (error) => {
+        uploadStream.on("error", (error) => {
           reject(error);
         });
 
@@ -111,7 +111,6 @@ export async function POST(request: NextRequest) {
         line-height: 1.6;
         color: #f9f9f9;
         background-color: #121212;
-        max-width: 650px;
         margin: 0 auto;
         padding: 30px;
       }
@@ -119,6 +118,7 @@ export async function POST(request: NextRequest) {
         text-align: center;
         margin-bottom: 40px;
         border-bottom: 2px solid #eb0028;
+        background-color: #1e1e1e;
       }
       .header img {
         width: 200px;
@@ -139,6 +139,7 @@ export async function POST(request: NextRequest) {
         padding: 15px;
         margin: 25px 0;
         border-left: 4px solid #eb0028;
+        color: #f9f9f9;
       }
       .details h3 {
         color: #f9f9f9;
@@ -178,6 +179,9 @@ export async function POST(request: NextRequest) {
       small {
         font-size: 0.9em;
         color: #999;
+      }
+      p {
+        color: #f9f9f9;
       }
     </style>
   </head>

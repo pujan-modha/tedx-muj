@@ -26,6 +26,7 @@ import {
 } from "lucide-react";
 import { BoxReveal } from "@/components/ui/box-reveal";
 import GradualSpacing from "@/components/ui/gradual-spacing";
+import Link from "next/link";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -256,10 +257,10 @@ export default function TedXForm() {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>College Email</FormLabel>
+                          <FormLabel>Email</FormLabel>
                           <FormControl>
                             <Input
-                              placeholder="john.doe@muj.manipal.edu"
+                              placeholder="john.doe@gmail.com"
                               {...field}
                             />
                           </FormControl>
@@ -280,6 +281,9 @@ export default function TedXForm() {
                         </FormItem>
                       )}
                     />
+                    <Link href="https://rzp.io/rzp/ntW8VTH9" target="_blank">
+                      <Button className="w-full">Click Here to Pay</Button>
+                    </Link>
                     <FormField
                       control={form.control}
                       name="file"

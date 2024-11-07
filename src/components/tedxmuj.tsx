@@ -66,7 +66,7 @@ export default function TEDxMUJ() {
                   />
                 </svg>
               </Button>
-            </Link> 
+            </Link>
           </div>
           <div className="flex items-center justify-center">
             <Image

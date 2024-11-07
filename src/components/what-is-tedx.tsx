@@ -33,17 +33,11 @@ export default function WhatIsTedx() {
               ?
             </h2>
             <p className="text-lg font-light text-balance">
-              In the spirit of fostering the spread of ideas, TED has
-              established a program called TEDx. TEDx is a series of locally
-              organized events designed to bring people together for a TED-like
-              experience. Our event, TEDxManipalUniversityJaipur, is part of
-              this program, where &quot;x&quot; represents an independently
-              organized TED event. At TEDxManipalUniversityJaipur, we will
-              feature a mix of TED Talk videos and live speakers, aiming to
-              inspire meaningful discussions and connections within a small
-              community. While the TED Conference offers general guidance for
-              the TEDx program, each TEDx event, including ours, is
-              independently organized.
+              TEDx is a grassroots initiative by TED, dedicated to sparking
+              conversations, deepening understanding, and driving meaningful
+              change. TEDx brings TED’s mission of “ideas worth spreading” to
+              local communities around the globe; and this time to Jaipur,
+              through TEDx MUJ.
             </p>
             <Link href="https://www.ted.com/tedx" target="_blank">
               <Button className="mt-5">
