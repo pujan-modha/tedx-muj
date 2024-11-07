@@ -2,9 +2,9 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import Particles from "./ui/particles";
 import BoxReveal from "./ui/box-reveal";
-import GradualSpacing from "./ui/gradual-spacing";
 import Link from "next/link";
-export default function TEDxMUJ() {
+
+export default function WhatIsTedx() {
   return (
     <>
       <div className="border-2 border-brand bg-brand/5 min-h-[80svh] relative flex items-center w-full justify-center overflow-hidden">
@@ -17,40 +17,25 @@ export default function TEDxMUJ() {
         />
         <div className="p-10 grid lg:grid-cols-2 gap-10 z-10">
           <div>
-            <div className="mb-5">
+            <h2 className="font-bold text-4xl mb-5 flex">
+              About
               <BoxReveal boxColor={"#eb0028"} duration={0.5}>
-                <div className="text-4xl font-black text-brand">
-                  TED<span className="align-super text-2xl">x</span>
-                </div>
+                <p className="text-brand font-black ml-1">&nbsp;TED</p>
               </BoxReveal>
-              <div className="flex">
-                <GradualSpacing
-                  className="font-display text-center font-thin text-white text-4xl"
-                  text="Manipal "
-                  duration={0.5}
-                />
-                <GradualSpacing
-                  className="font-display text-center font-thin text-white text-4xl"
-                  text="University"
-                  duration={0.5}
-                />
-              </div>
-              <GradualSpacing
-                className="font-display text-center font-thin text-white text-4xl"
-                text="Jaipur"
-                duration={0.5}
-              />
-            </div>
+            </h2>
             <p className="text-lg font-light text-balance">
-              TEDx Manipal University Jaipur brings you a day filled with
-              captivating speakers and thought-provoking conversations. Each
-              session is carefully crafted to cover a variety of topics and
-              ideas that encourage our students to think differently and explore
-              new perspectives.
+              TED is a nonprofit that shares ideas to inspire conversation and
+              drive change. Founded in 1984 to bridge Technology, Entertainment,
+              and Design, TED now covers fields like science, business,
+              education, and global issues. Through TED Talks, podcasts, TED-Ed
+              videos, and TV programs, TED engages a global audience in over 100
+              languages. With initiatives like the Audacious Project (which has
+              raised over $3 billion) and Countdown for climate solutions, TED
+              works toward a more sustainable and equitable future.
             </p>
-            <Link href="/register">
+            <Link href="https://www.ted.org" target="_blank">
               <Button className="mt-5">
-                Register
+                Know More
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -62,11 +47,11 @@ export default function TEDxMUJ() {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+                    d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
                   />
                 </svg>
               </Button>
-            </Link> 
+            </Link>
           </div>
           <div className="flex items-center justify-center">
             <Image

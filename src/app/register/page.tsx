@@ -24,6 +24,8 @@ import {
   UploadCloud,
   LoaderCircle,
 } from "lucide-react";
+import { BoxReveal } from "@/components/ui/box-reveal";
+import GradualSpacing from "@/components/ui/gradual-spacing";
 
 const formSchema = z.object({
   fullName: z.string().min(2, {
@@ -42,7 +44,10 @@ const formSchema = z.object({
     .custom<File>((file) => file instanceof File, {
       message: "Payment proof is required.",
     })
-    .refine((file) => file.size <= 5000000, "File size should be less than 5MB")
+    .refine(
+      (file) => file.size <= 10000000,
+      "File size should be less than 10MB"
+    )
     .refine(
       (file) =>
         ["application/pdf", "image/jpeg", "image/png"].includes(file.type),
@@ -97,10 +102,10 @@ export default function TedXForm() {
         throw new Error("Registration failed");
       }
 
-      const result = await response.json();
-      console.log("Registration successful:", result);
+      // const result = await response.json();
+      // console.log("Registration successful:", result);
       toast({
-        title: "Successfully registered for TedX Event",
+        title: "Successfully registered for TEDx Event",
         description: "We have sent a confirmation email",
       });
       form.reset();
@@ -124,7 +129,7 @@ export default function TedXForm() {
         setRegCount(data.count);
       } catch (error) {
         toast({
-          title: "Error fetching registration count",
+          title: "Something went wrong",
           description: "Please try again later",
           variant: "destructive",
         });
@@ -135,187 +140,270 @@ export default function TedXForm() {
   }, [toast]);
 
   useEffect(() => {
-    console.log(regCount)
+    console.log(regCount);
   }, [regCount]);
 
   return (
-    <div className="flex min-h-[100svh] my-12 items-center justify-end max-w-7xl mx-auto pt-20">
-      <div className="grid grid-cols-2">
-        <div>Placeholder Text</div>
-        <div className="bg-black">
-          <BackgroundBeamsWithCollision className="max-w-md m-auto p-6 border-2 border-brand bg-brand/5 ">
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4 z-10"
-              >
-                <FormField
-                  control={form.control}
-                  name="fullName"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="John Doe" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+    <div className="flex min-h-[100svh] my-12 items-center max-w-7xl mx-auto pt-20 px-4 lg:px-0">
+      <div className="lg:flex w-full lg:space-x-4 space-y-8">
+        <div className="w-full space-y-8">
+          <div className="space-y-4">
+            <div className="text-3xl font-bold">
+              Thank you for your interest in
+              <div>
+                <BoxReveal boxColor={"#eb0028"} duration={0.5}>
+                  <div className="text-4xl font-black text-brand">
+                    TED<span className="align-super text-2xl">x</span>
+                  </div>
+                </BoxReveal>
+                <div className="flex">
+                  <GradualSpacing
+                    className="font-display text-center font-thin text-white text-4xl"
+                    text="Manipal "
+                    duration={0.5}
+                  />
+                  <GradualSpacing
+                    className="font-display text-center font-thin text-white text-4xl"
+                    text="University"
+                    duration={0.5}
+                  />
+                </div>
+                <GradualSpacing
+                  className="font-display text-center font-thin text-white text-4xl"
+                  text="Jaipur"
+                  duration={0.5}
                 />
-                <FormField
-                  control={form.control}
-                  name="mobileNumber"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Mobile number</FormLabel>
-                      <FormControl>
-                        <Input placeholder="9876543210" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="john.doe@muj.manipal.edu"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="registrationNumber"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Registration number</FormLabel>
-                      <FormControl>
-                        <Input placeholder="229301576" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="file"
-                  render={({ field: { onChange, value, ...field } }) => (
-                    <FormItem>
-                      <FormLabel className="text-white">
-                        Upload Payment Proof
-                      </FormLabel>
-                      <FormControl>
-                        <div className="w-full">
-                          <label
-                            htmlFor="file-upload"
-                            className="flex items-center justify-between w-full p-4 rounded-lg cursor-pointer border-2 border-dashed border-red-500/50 hover:border-red-500 bg-red-500/5 hover:bg-red-500/10 transition-all duration-150 ease-in-out"
-                          >
-                            {value ? (
-                              <>
-                                <div className="flex items-center space-x-4">
-                                  <ImageIcon className="w-6 h-6 text-red-500" />
-                                  <div>
-                                    <p className="text-sm text-red-500 font-medium truncate-filename">
-                                      {value.name}
-                                    </p>
-                                  </div>
-                                </div>
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.preventDefault();
-                                    onChange(undefined);
-                                  }}
-                                  className="text-red-500 hover:text-red-400 p-1 rounded"
-                                >
-                                  <Trash2 className="w-5 h-5" />
-                                </button>
-                              </>
-                            ) : (
-                              <div className="flex flex-col items-center justify-center w-full py-4">
-                                <UploadCloud className="w-12 h-12 mb-2 text-red-500" />
-                                <p className="text-sm text-gray-400">
-                                  Drag and drop your file here or{" "}
-                                  <span className="font-semibold text-red-500 hover:text-red-400">
-                                    click to browse
-                                  </span>
-                                </p>
-                              </div>
-                            )}
+              </div>
+            </div>
+          </div>
+          <p className="text-lg text-balance">
+            Please fill the form to complete your registration to a day full of
+            ideas and stories designed to move and inspire.
+          </p>
+
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-brand">
+              Terms and Conditions:
+            </h3>
+            <ol className="list-decimal list-inside space-y-4 marker:text-brand">
+              <li className="text-balance">
+                By registering for TEDxManipalUniversityJaipur, you agree to be
+                part of the event and allow TEDxManipalUniversityJaipur to use
+                your registration details for event communication.
+              </li>
+              <li className="text-balance">
+                Photos and videos taken during the event may be used for
+                promotional purposes across various media platforms.
+              </li>
+              <li className="text-balance">
+                The event organizers are not responsible for any lost personal
+                items during the event.
+              </li>
+              <li className="text-balance">
+                Please ensure you have provided accurate contact information to
+                receive event updates.
+              </li>
+              <li className="text-balance">
+                The event organizers may share your provided details with
+                trusted third-party partners for services such as ticketing,
+                catering, and other promotional activities.
+              </li>
+            </ol>
+          </div>
+
+          <p className="text-xl font-medium text-brand">
+            We look forward to having you join us at
+            TEDxManipalUniversityJaipur!
+          </p>
+        </div>
+        <div className="bg-black w-full flex h-full items-center">
+          <BackgroundBeamsWithCollision className="w-full m-auto p-6 border-2 border-brand bg-brand/5 ">
+            {regCount < 100 ? (
+              <>
+                <Form {...form}>
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit)}
+                    className="space-y-4 z-10 w-full"
+                  >
+                    <FormField
+                      control={form.control}
+                      name="fullName"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Full name</FormLabel>
+                          <FormControl>
+                            <Input placeholder="John Doe" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="mobileNumber"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Mobile number (WhatsApp)</FormLabel>
+                          <FormControl>
+                            <Input placeholder="9876543210" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>College Email</FormLabel>
+                          <FormControl>
                             <Input
-                              id="file-upload"
-                              type="file"
-                              accept=".pdf,.jpg,.jpeg,.png"
-                              onChange={(e) => {
-                                const file = e.target.files?.[0];
-                                onChange(file);
-                              }}
-                              className="hidden"
+                              placeholder="john.doe@muj.manipal.edu"
                               {...field}
                             />
-                          </label>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="registrationNumber"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Registration number</FormLabel>
+                          <FormControl>
+                            <Input placeholder="229301576" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="file"
+                      render={({ field: { onChange, value, ...field } }) => (
+                        <FormItem>
+                          <FormLabel className="text-white">
+                            Upload Payment Proof
+                          </FormLabel>
+                          <FormControl>
+                            <div className="w-full">
+                              <label
+                                htmlFor="file-upload"
+                                className="flex items-center justify-between w-full p-4 rounded-lg cursor-pointer border-2 border-dashed border-red-500/50 hover:border-red-500 bg-red-500/5 hover:bg-red-500/10 transition-all duration-150 ease-in-out"
+                              >
+                                {value ? (
+                                  <>
+                                    <div className="flex items-center space-x-4">
+                                      <ImageIcon className="w-6 h-6 text-red-500" />
+                                      <div>
+                                        <p className="text-sm text-red-500 font-medium truncate-filename">
+                                          {value.name}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <button
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.preventDefault();
+                                        onChange(undefined);
+                                      }}
+                                      className="text-red-500 hover:text-red-400 p-1 rounded"
+                                    >
+                                      <Trash2 className="w-5 h-5" />
+                                    </button>
+                                  </>
+                                ) : (
+                                  <div className="flex flex-col items-center justify-center w-full py-4">
+                                    <UploadCloud className="w-12 h-12 mb-2 text-red-500" />
+                                    <p className="text-sm text-gray-400">
+                                      <span className="font-semibold text-red-500 hover:text-red-400">
+                                        Click here to browse file
+                                      </span>
+                                    </p>
+                                  </div>
+                                )}
+                                <Input
+                                  id="file-upload"
+                                  type="file"
+                                  accept=".pdf,.jpg,.jpeg,.png"
+                                  onChange={(e) => {
+                                    const file = e.target.files?.[0];
+                                    onChange(file);
+                                  }}
+                                  className="hidden"
+                                  {...field}
+                                />
+                              </label>
+                            </div>
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="transactionID"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Transaction ID</FormLabel>
+                          <FormControl>
+                            <Input placeholder="123456789" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                    <FormField
+                      control={form.control}
+                      name="termsAccepted"
+                      render={({ field }) => (
+                        <div>
+                          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                            <FormControl>
+                              <Checkbox
+                                checked={field.value}
+                                onCheckedChange={field.onChange}
+                              />
+                            </FormControl>
+                            <div className="space-y-1 leading-none">
+                              <FormLabel>Accept terms and conditions</FormLabel>
+                              <FormDescription>
+                                You agree to follow all event rules and
+                                guidelines.
+                              </FormDescription>
+                            </div>
+                          </FormItem>
+                          <FormMessage />
                         </div>
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="transactionID"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Transaction ID</FormLabel>
-                      <FormControl>
-                        <Input placeholder="123456789" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="termsAccepted"
-                  render={({ field }) => (
-                    <div>
-                      <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                        <FormControl>
-                          <Checkbox
-                            checked={field.value}
-                            onCheckedChange={field.onChange}
-                          />
-                        </FormControl>
-                        <div className="space-y-1 leading-none">
-                          <FormLabel>Accept terms and conditions</FormLabel>
-                          <FormDescription>
-                            You agree to follow all event rules and guidelines.
-                          </FormDescription>
+                      )}
+                    />
+                    <Button
+                      type="submit"
+                      className="w-full"
+                      disabled={isLoading}
+                    >
+                      {isLoading ? (
+                        <div className="flex items-center space-x-2">
+                          <LoaderCircle className="animate-spin" />
+                          <p>Submitting...</p>
                         </div>
-                      </FormItem>
-                      <FormMessage />
-                    </div>
-                  )}
-                />
-                <Button type="submit" className="w-full" disabled={isLoading}>
-                  {isLoading ? (
-                    <div className="flex items-center space-x-2">
-                      <LoaderCircle className="animate-spin" />
-                      <p>Submitting...</p>
-                    </div>
-                  ) : (
-                    <p>Submit</p>
-                  )}
-                </Button>
-              </form>
-            </Form>
+                      ) : (
+                        <p>Submit</p>
+                      )}
+                    </Button>
+                  </form>
+                </Form>
+              </>
+            ) : (
+              <>
+                <p className="text-2xl font-bold text-brand">
+                  Registrations are closed
+                </p>
+              </>
+            )}
           </BackgroundBeamsWithCollision>
         </div>
       </div>

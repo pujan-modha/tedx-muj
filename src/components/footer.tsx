@@ -6,11 +6,11 @@ import Meteors from "./ui/meteors";
 export default function Footer() {
   return (
     <div className="bg-black">
-      <div className="bg-brand/5 border-t-2 z-10 border-brand py-12 relative flex items-center w-full justify-center overflow-hidden">
+      <div className="bg-brand/5 border-t-2 z-10 border-brand py-12 relative flex items-center w-full justify-center overflow-hidden px-4">
         <Meteors />
         <footer className="z-10">
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
               {/* Logo & Description */}
               <div className="space-y-4">
                 <div className="mb-5">
@@ -21,62 +21,54 @@ export default function Footer() {
                   </BoxReveal>
                   <div className="flex">
                     <GradualSpacing
-                      className="font-display text-center font-thin tracking-normal text-white text-4xl"
+                      className="font-display text-center font-thin text-white text-4xl"
                       text="Manipal "
                       duration={0.5}
                     />
                     <GradualSpacing
-                      className="font-display text-center font-thin tracking-normal text-white text-4xl"
+                      className="font-display text-center font-thin text-white text-4xl"
                       text="University"
                       duration={0.5}
                     />
                   </div>
                   <GradualSpacing
-                    className="font-display text-center font-thin tracking-normal text-white text-4xl"
+                    className="font-display text-center font-thin text-white text-4xl"
                     text="Jaipur"
                     duration={0.5}
                   />
                 </div>
-                <p className="text-gray-400 text-sm">
+                <p className="text-white/50 text-xs">
                   This independent TEDx event is operated under license from
                   TED.
                 </p>
                 {/* Social Links */}
-                <div className="mt-8 flex justify-center space-x-6">
-                  <a
-                    href="https://twitter.com"
+                <div className="mt-8 flex space-x-6">
+                  <Link
+                    href="https://www.instagram.com/tedxmanipaluniversityjaipur/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white"
                   >
                     <svg
-                      className="w-6 h-6"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      className="size-6 hover:fill-brand fill-white/70"
                     >
-                      <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                      <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z" />
                     </svg>
-                  </a>
-                  <a
-                    href="https://instagram.com"
+                  </Link>
+                  <Link
+                    href="https://in.linkedin.com/company/tedxmanipaluniversityjaipur"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white"
                   >
                     <svg
-                      className="w-6 h-6"
-                      fill="currentColor"
-                      viewBox="0 0 24 24"
-                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      className="size-6 hover:fill-brand fill-white/70"
                     >
-                      <path
-                        fillRule="evenodd"
-                        d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-                        clipRule="evenodd"
-                      />
+                      <path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </div>
 
@@ -88,23 +80,23 @@ export default function Footer() {
                     href="https://jaipur.manipal.edu"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white"
+                    className="text-white/50 hover:text-brand"
                   >
                     Manipal University Jaipur
                   </Link>
                   <Link
-                    href="https://www.ted.com/tedx/events/53639"
+                    href="https://www.ted.com/tedx/events/60423"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white"
+                    className="text-white/50 hover:text-brand"
                   >
-                    TEDxMUJ
+                    TEDxManipalUniversityJaipur
                   </Link>
                   <Link
                     href="https://www.ted.org"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-white"
+                    className="text-white/50 hover:text-brand"
                   >
                     TED.org
                   </Link>
@@ -116,16 +108,28 @@ export default function Footer() {
                 <h4 className="text-lg font-semibold text-brand">CONTACT</h4>
                 <div className="space-y-4">
                   <div>
-                    <p className="text-white">Ridhi Makharia</p>
-                    <p className="text-gray-400">+91 9739308062</p>
+                    <p className="text-white">Lakshita Agrawal</p>
+                    <Link href="tel:+919312941940" className="text-white/50">
+                      +91 93129 41940
+                    </Link>
                   </div>
                   <div>
-                    <p className="text-white">Aditya Pandey</p>
-                    <p className="text-gray-400">+91 9599129379</p>
+                    <p className="text-white">Atharv Thakle</p>
+                    <Link href="tel:+917580837176" className="text-white/50">
+                      +91 75808 37176
+                    </Link>
                   </div>
                   <div>
-                    <p className="text-white">Nachiketa Jha</p>
-                    <p className="text-gray-400">+91 8178908970</p>
+                    <p className="text-white">Krishnav Gupta</p>
+                    <Link href="tel:+919811187903" className="text-white/50">
+                      +91 98111 87903
+                    </Link>
+                  </div>
+                  <div>
+                    <p className="text-white">Ankika Chatterjee</p>
+                    <Link href="tel:+919501455191" className="text-white/50">
+                      +91 95014 55191
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -133,15 +137,15 @@ export default function Footer() {
               {/* Address */}
               <div className="space-y-4">
                 <h4 className="text-lg font-semibold text-brand">ADDRESS</h4>
-                <p className="text-gray-400">
+                <p className="text-white/50">
                   Manipal University, Dehmi Kalan, Near GVK Toll Plaza,
                   Jaipur-Ajmer Expressway, Jaipur, Rajasthan 303007
                 </p>
                 <div className="space-y-2">
-                  <p className="text-gray-400">+91 141-3999100</p>
+                  <p className="text-white/50">+91 141-3999100</p>
                   <a
                     href="mailto:contact@jaipur.manipal.edu"
-                    className="text-gray-400 hover:text-white"
+                    className="text-white/50 hover:text-brand"
                   >
                     contact@jaipur.manipal.edu
                   </a>
@@ -150,8 +154,17 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-            <div className="mt-12 pt-12 border-t-2 border-brand/50 text-center text-gray-400 text-sm">
-              <p>Made with ❤️ by Team TEDxMUJ</p>
+            <div className="mt-12 pt-12 border-t-2 border-brand/50 text-center text-white/50 text-sm">
+              <p>
+                Made with{" "}
+                <span className="text-transparent bg-clip-text bg-brand animate-pulse">
+                  ❤️
+                </span>{" "}
+                by{" "}
+                <Link href="/credits" className="text-brand">
+                  TEDxTeamDev
+                </Link>
+              </p>
             </div>
           </div>
         </footer>

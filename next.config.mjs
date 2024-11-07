@@ -7,7 +7,20 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ["tedxmuj.vercel.app"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "tedxmuj.vercel.app",
+      },
+      {
+        protocol: "https",
+        hostname: "github.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.prismic.io",
+      },
+    ],
   },
 };
 
