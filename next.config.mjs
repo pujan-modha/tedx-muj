@@ -20,6 +20,10 @@ const nextConfig = {
         protocol: "https",
         hostname: "images.prismic.io",
       },
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+      },
     ],
   },
 };

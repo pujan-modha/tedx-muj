@@ -151,32 +151,14 @@ export default function Credits() {
             <div>
               <div className="mx-auto w-64 border-2 p-2 bg-brand bg-opacity-10 border-brand">
                 <div className="relative overflow-hidden transition duration-500 transform">
-                  {/* <Image
-                    src="https://github.com/pujan-modha.png"
+                  <Image
+                    src="https://res.cloudinary.com/dfnskrlpn/image/upload/v1731074733/WhatsApp_Image_2024-11-07_at_19.11.41_12458f36_ov1q5p.jpg"
                     alt="Anvit Dadape"
                     width={512}
                     height={512}
                     quality={100}
                     className="object-cover w-full aspect-[3/4]"
-                  /> */}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 300 400"
-                    className="object-cover w-full aspect-[3/4]"
-                  >
-                    <rect width="300" height="400" fill="#eb0028FF"></rect>
-                    <text
-                      x="50%"
-                      y="50%"
-                      dominant-baseline="middle"
-                      text-anchor="middle"
-                      font-family="monospace"
-                      font-size="128px"
-                      fill="#ffffffFF"
-                    >
-                      AD
-                    </text>
-                  </svg>
+                  />
                 </div>
               </div>
               <div className="my-4">
