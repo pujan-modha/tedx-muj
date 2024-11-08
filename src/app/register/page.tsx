@@ -146,77 +146,7 @@ export default function TedXForm() {
 
   return (
     <div className="flex min-h-[100svh] my-12 items-center max-w-7xl mx-auto pt-20 px-4 lg:px-0">
-      <div className="lg:flex w-full lg:space-x-4 space-y-8">
-        <div className="w-full space-y-8">
-          <div className="space-y-4">
-            <div className="text-3xl font-bold">
-              Thank you for your interest in
-              <div>
-                <BoxReveal boxColor={"#eb0028"} duration={0.5}>
-                  <div className="text-4xl font-black text-brand">
-                    TED<span className="align-super text-2xl">x</span>
-                  </div>
-                </BoxReveal>
-                <div className="flex">
-                  <GradualSpacing
-                    className="font-display text-center font-thin text-white text-4xl"
-                    text="Manipal "
-                    duration={0.5}
-                  />
-                  <GradualSpacing
-                    className="font-display text-center font-thin text-white text-4xl"
-                    text="University"
-                    duration={0.5}
-                  />
-                </div>
-                <GradualSpacing
-                  className="font-display text-center font-thin text-white text-4xl"
-                  text="Jaipur"
-                  duration={0.5}
-                />
-              </div>
-            </div>
-          </div>
-          <p className="text-lg text-balance">
-            Please fill the form to complete your registration to a day full of
-            ideas and stories designed to move and inspire.
-          </p>
-
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-brand">
-              Terms and Conditions:
-            </h3>
-            <ol className="list-decimal list-inside space-y-4 marker:text-brand">
-              <li className="text-balance">
-                By registering for TEDxManipalUniversityJaipur, you agree to be
-                part of the event and allow TEDxManipalUniversityJaipur to use
-                your registration details for event communication.
-              </li>
-              <li className="text-balance">
-                Photos and videos taken during the event may be used for
-                promotional purposes across various media platforms.
-              </li>
-              <li className="text-balance">
-                The event organizers are not responsible for any lost personal
-                items during the event.
-              </li>
-              <li className="text-balance">
-                Please ensure you have provided accurate contact information to
-                receive event updates.
-              </li>
-              <li className="text-balance">
-                The event organizers may share your provided details with
-                trusted third-party partners for services such as ticketing,
-                catering, and other promotional activities.
-              </li>
-            </ol>
-          </div>
-
-          <p className="text-xl font-medium text-brand">
-            We look forward to having you join us at
-            TEDxManipalUniversityJaipur!
-          </p>
-        </div>
+      <div className="lg:flex w-full lg:space-x-12 space-y-8">
         <div className="bg-black w-full flex h-full items-center">
           <BackgroundBeamsWithCollision className="w-full m-auto p-6 border-2 border-brand bg-brand/5 ">
             {regCount < 100 ? (
@@ -422,6 +352,75 @@ export default function TedXForm() {
               </>
             )}
           </BackgroundBeamsWithCollision>
+        </div>
+        <div className="w-full space-y-8">
+          <div className="space-y-4">
+            <div className="text-3xl font-bold">
+              Thank you for your interest in
+              <div>
+                <BoxReveal boxColor={"#eb0028"} duration={0.5}>
+                  <div className="text-4xl font-black text-brand">
+                    TED<span className="align-super text-2xl">x</span>
+                  </div>
+                </BoxReveal>
+                <div className="flex">
+                  <GradualSpacing
+                    className="font-display text-center font-thin text-white text-4xl"
+                    text="Manipal "
+                    duration={0.5}
+                  />
+                  <GradualSpacing
+                    className="font-display text-center font-thin text-white text-4xl"
+                    text="University"
+                    duration={0.5}
+                  />
+                </div>
+                <GradualSpacing
+                  className="font-display text-center font-thin text-white text-4xl"
+                  text="Jaipur"
+                  duration={0.5}
+                />
+              </div>
+            </div>
+          </div>
+          <p className="text-lg text-balance">
+            Please fill the form to complete your registration to a day full of
+            ideas and stories designed to move and inspire.
+          </p>
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-brand">
+              Terms and Conditions:
+            </h3>
+            <ol className="list-decimal list-inside space-y-4 marker:text-brand">
+              <li className="text-balance">
+                By registering for TEDxManipalUniversityJaipur, you agree to be
+                part of the event and allow TEDxManipalUniversityJaipur to use
+                your registration details for event communication.
+              </li>
+              <li className="text-balance">
+                Photos and videos taken during the event may be used for
+                promotional purposes across various media platforms.
+              </li>
+              <li className="text-balance">
+                The event organizers are not responsible for any lost personal
+                items during the event.
+              </li>
+              <li className="text-balance">
+                Please ensure you have provided accurate contact information to
+                receive event updates.
+              </li>
+              <li className="text-balance">
+                The event organizers may share your provided details with
+                trusted third-party partners for services such as ticketing,
+                catering, and other promotional activities.
+              </li>
+            </ol>
+          </div>
+
+          <p className="text-xl font-medium text-brand">
+            We look forward to having you join us at
+            TEDxManipalUniversityJaipur!
+          </p>
         </div>
       </div>
     </div>
