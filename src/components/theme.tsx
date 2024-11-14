@@ -16,27 +16,20 @@ export default function WhatIsTedx() {
           refresh
         />
         <div className="p-10 grid lg:grid-cols-2 gap-10 z-10">
-          <div className="flex items-center justify-center blur select-none">
-            <Image
-              src="https://tedxmuj.vercel.app/static/media/about.930b2a8bd598b2eb486e.jpg"
-              alt="TEDx"
-              width={500}
-              height={500}
-            />
+          <div className="flex items-center justify-center">
+            <Image src="/equinox.png" alt="TEDx" width={500} height={500} />
           </div>
           <div>
             <div className="flex-wrap items-center mb-5">
               <h2 className="text-4xl font-bold">Theme:&nbsp;</h2>
               <BoxReveal boxColor={"#eb0028"} duration={0.5}>
-                <h2 className="text-4xl text-brand font-black">
-                  Revealing Soon!
-                </h2>
+                <h2 className="text-4xl text-brand font-black">EQUINOX</h2>
               </BoxReveal>
             </div>
-            <p className="text-lg font-light text-balance blur select-none">
-              Oh, so you think you can do iNsPeCt ElEmEnT and get the content
-              for this section? Well, you can not. Kindly wait for the theme to
-              be revealed. Until then, you can register for the event.
+            <p className="text-lg font-light text-balance">
+              Removing the sharp divide between thoughts of opposite polarity,
+              Equinox plans to juxtapose these ideas and show that the dichotomy
+              between them isn't as great as it seems.
             </p>
             <Link href="/register">
               <Button className="mt-5">
