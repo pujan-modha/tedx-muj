@@ -17,7 +17,7 @@ export default function WhatIsTedx() {
         />
         <div className="p-10 grid lg:grid-cols-2 gap-10 z-10">
           <div className="flex items-center justify-center">
-            <Image src="/equinox.png" alt="TEDx" width={500} height={500} />
+            <Image src="/equinox.png" alt="TEDx" width={300} height={300} />
           </div>
           <div>
             <div className="flex-wrap items-center mb-5">
