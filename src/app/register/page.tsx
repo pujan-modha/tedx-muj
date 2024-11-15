@@ -149,7 +149,7 @@ export default function TedXForm() {
       <div className="lg:flex w-full lg:space-x-12 space-y-8">
         <div className="bg-black w-full flex h-full items-center">
           <BackgroundBeamsWithCollision className="w-full m-auto p-6 border-2 border-brand bg-brand/5 ">
-            {regCount < 100 ? (
+            {regCount < 90 ? (
               <>
                 <Form {...form}>
                   <form
